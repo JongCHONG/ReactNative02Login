@@ -1,11 +1,24 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { Button, TextInput, View } from 'react-native'
+import { Formik } from 'formik'
 
 const Login = () => {
   return (
-    <View>
-      <Text>Hello World</Text>
-    </View>
+    <Formik
+      initialValues={{ email: '' }}
+      onSubmit={values => console.log(values)}
+    >
+      {({ handleChange, handleBlur, handleSubmit, values }) => (
+        <View>
+          <TextInput
+            onChangeText={handleChange('email')}
+            onBlur={handleBlur('email')}
+            value={values.email}
+          />
+          <Button onPress={handleSubmit} title="Submit" />
+        </View>
+      )}
+    </Formik>
   )
 }
 
